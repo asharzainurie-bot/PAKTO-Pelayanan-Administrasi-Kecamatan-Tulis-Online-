@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { Clock, CheckCircle, AlertCircle, Download, Search, Filter } from 'lucide-react';
+import { Clock, CheckCircle, AlertCircle, Download, Search, Filter, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function History() {
   const [requests, setRequests] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRequests();
@@ -40,9 +42,17 @@ export default function History() {
   return (
     <div className="space-y-10 max-w-7xl mx-auto">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <h1 className="text-4xl font-bold text-white tracking-tight">Riwayat Pengajuan</h1>
-          <p className="text-zinc-400 mt-2 text-lg font-medium">Daftar semua pengajuan surat yang pernah Anda buat.</p>
+        <div className="flex items-center space-x-4">
+          <button 
+            onClick={() => navigate(-1)}
+            className="p-3 bg-white/5 rounded-2xl text-zinc-400 hover:text-white hover:bg-white/10 transition-all border border-white/5"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <div>
+            <h1 className="text-4xl font-bold text-white tracking-tight">Riwayat Pengajuan</h1>
+            <p className="text-zinc-400 mt-2 text-lg font-medium">Daftar semua pengajuan surat yang pernah Anda buat.</p>
+          </div>
         </div>
 
         <div className="flex items-center space-x-4">

@@ -62,36 +62,36 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("App component mounted");
-    // Fallback timeout to prevent infinite loading
-    const timer = setTimeout(() => {
-      console.log("Loading fallback triggered");
-      setLoading(false);
-    }, 5000);
+    let mounted = true;
 
     const initAuth = async () => {
-      console.log("Initializing auth...");
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
-        if (error) {
-          console.error("Get session error:", error);
+        if (error) throw error;
+        
+        if (mounted) {
+          setSession(session);
+          if (session) {
+            await fetchProfile(session.user.id, session.user.email);
+          } else {
+            setLoading(false);
+          }
         }
-        console.log("Session fetched:", session?.user?.id);
-        setSession(session);
-        if (session) {
-          await fetchProfile(session.user.id, session.user.email);
+      } catch (err: any) {
+        if (err.message?.includes('Failed to fetch')) {
+          console.error("Supabase connection failed. Check your network or project URL.");
         } else {
-          setLoading(false);
+          console.error("Auth initialization error:", err);
         }
-      } catch (err) {
-        console.error("Auth initialization error:", err);
-        setLoading(false);
+        if (mounted) setLoading(false);
       }
     };
 
     initAuth();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!mounted) return;
+      
       setSession(session);
       if (session) {
         fetchProfile(session.user.id, session.user.email);
@@ -102,7 +102,7 @@ export default function App() {
     });
 
     return () => {
-      clearTimeout(timer);
+      mounted = false;
       subscription.unsubscribe();
     };
   }, []);
@@ -114,6 +114,15 @@ export default function App() {
         .select('*')
         .eq('id', userId)
         .single();
+      
+      if (error) {
+        if (error.message?.includes('Failed to fetch')) {
+          console.error("Database fetch failed: Network error.");
+        } else {
+          console.error("Profile fetch error:", error.message);
+        }
+        return;
+      }
       
       if (data) {
         // Bootstrap admin for the owner email
@@ -130,7 +139,7 @@ export default function App() {
         }
       }
     } catch (err) {
-      console.error("Profile fetch error:", err);
+      console.error("Unexpected profile fetch error:", err);
     } finally {
       setLoading(false);
     }

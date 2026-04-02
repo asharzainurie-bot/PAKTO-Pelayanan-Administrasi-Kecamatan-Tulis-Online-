@@ -41,11 +41,15 @@ export default function Login() {
         className="w-full max-w-md glass-card p-10 relative z-10"
       >
         <div className="text-center mb-10">
-          <div className="w-28 h-28 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(16,185,129,0.3),inset_0_4px_8px_rgba(255,255,255,0.4)] border-2 border-emerald-400/30 relative overflow-hidden group hover:scale-105 transition-transform duration-500">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.5),transparent_70%)]"></div>
-            <span className="text-6xl font-black text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.3)] relative z-10">P</span>
+          <div className="w-32 h-32 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(16,185,129,0.2)] border-2 border-emerald-500/20 relative overflow-hidden group hover:scale-105 transition-transform duration-500">
+            <img 
+              src="https://i.imgur.com/6buHyBO.png" 
+              alt="PAKTO Logo" 
+              className="w-full h-full object-contain relative z-10"
+              referrerPolicy="no-referrer"
+            />
           </div>
-          <h1 className="text-5xl font-black text-white tracking-tighter mb-2">PAKTO</h1>
+          <h1 className="text-5xl font-black text-white tracking-tighter mb-2">PAK TO</h1>
           <p className="text-emerald-500 font-bold tracking-[0.2em] uppercase text-xs mb-4">Pelayanan Administrasi Kecamatan Tulis Online</p>
           <div className="h-1 w-16 bg-emerald-500 mx-auto rounded-full opacity-50"></div>
         </div>

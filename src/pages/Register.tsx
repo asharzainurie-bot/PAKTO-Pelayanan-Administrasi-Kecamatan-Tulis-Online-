@@ -82,9 +82,13 @@ export default function Register() {
         className="w-full max-w-2xl glass-card p-12 relative z-10"
       >
         <div className="text-center mb-12">
-          <div className="w-28 h-28 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(16,185,129,0.3),inset_0_4px_8px_rgba(255,255,255,0.4)] border-2 border-emerald-400/30 relative overflow-hidden group hover:scale-105 transition-transform duration-500">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.5),transparent_70%)]"></div>
-            <span className="text-6xl font-black text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.3)] relative z-10">P</span>
+          <div className="w-32 h-32 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(16,185,129,0.2)] border-2 border-emerald-500/20 relative overflow-hidden group hover:scale-105 transition-transform duration-500">
+            <img 
+              src="https://i.imgur.com/6buHyBO.png" 
+              alt="PAKTO Logo" 
+              className="w-full h-full object-contain relative z-10"
+              referrerPolicy="no-referrer"
+            />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">Daftar Akun</h1>
           <p className="text-zinc-500 mt-3 font-medium">Lengkapi data diri untuk pendaftaran PAKTO</p>

@@ -30,7 +30,7 @@ ON CONFLICT (id) DO NOTHING;
 CREATE TABLE requests (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
-  type TEXT NOT NULL CHECK (type IN ('SKTM', 'Dispensasi Nikah')),
+  type TEXT NOT NULL CHECK (type IN ('SKTM', 'Dispensasi Nikah', 'Lapor/Aduan', 'Surat Keterangan Lainnya')),
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending', 'processing', 'completed', 'rejected')),
   requirements JSONB DEFAULT '[]'::jsonb,
   result_url TEXT,

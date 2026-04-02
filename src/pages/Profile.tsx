@@ -57,12 +57,12 @@ export default function Profile({ profile: initialProfile, refreshProfile }: { p
     <div className="max-w-4xl mx-auto space-y-10">
       <header className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Link 
-            to="/" 
+          <button 
+            onClick={() => navigate(-1)}
             className="p-3 bg-white/5 rounded-2xl text-zinc-400 hover:text-white hover:bg-white/10 transition-all border border-white/5"
           >
             <ArrowLeft size={20} />
-          </Link>
+          </button>
           <div>
             <h1 className="text-4xl font-bold text-white tracking-tight">Profil Saya</h1>
             <p className="text-zinc-400 mt-2 text-lg font-medium">Kelola informasi akun Anda.</p>

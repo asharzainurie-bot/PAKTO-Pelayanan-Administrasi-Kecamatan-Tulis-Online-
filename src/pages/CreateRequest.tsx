@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { motion } from 'framer-motion';
-import { FileText, Upload, CheckCircle, AlertCircle, Info } from 'lucide-react';
+import { FileText, Upload, CheckCircle, AlertCircle, Info, ArrowLeft } from 'lucide-react';
 
 const REQUEST_TYPES = [
   {
@@ -24,6 +24,23 @@ const REQUEST_TYPES = [
       'KTP Calon Pengantin',
       'Pas Foto',
       'Pengantar Desa (Jika beda nama)'
+    ]
+  },
+  {
+    id: 'Lapor/Aduan',
+    title: 'Lapor/Aduan',
+    requirements: [
+      'Gambar/Foto Laporan'
+    ]
+  },
+  {
+    id: 'Surat Keterangan Lainnya',
+    title: 'Surat Keterangan Lainnya',
+    requirements: [
+      'Surat Pengantar Desa',
+      'Kartu Keluarga (KK)',
+      'KTP',
+      'Lainnya (Opsional)'
     ]
   }
 ];
@@ -52,8 +69,8 @@ export default function CreateRequest() {
     e.preventDefault();
     if (!type) return setError('Pilih jenis surat terlebih dahulu.');
     
-    if (!formData.nik || !formData.full_name_ktp || !formData.birth_info) {
-      return setError('Harap lengkapi data diri pemohon (NIK, Nama KTP, Tempat Tanggal Lahir).');
+    if (!formData.nik || !formData.full_name_ktp || (type !== 'Lapor/Aduan' && !formData.birth_info)) {
+      return setError(`Harap lengkapi data diri pemohon (NIK, Nama KTP${type !== 'Lapor/Aduan' ? ', Tempat Tanggal Lahir' : ''}).`);
     }
     
     const currentRequirements = REQUEST_TYPES.find(rt => rt.id === type)?.requirements || [];
@@ -147,10 +164,18 @@ export default function CreateRequest() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-10">
-      <header className="relative py-8">
-        <div className="absolute -left-4 top-0 w-1 h-full bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
-        <h1 className="text-4xl font-bold text-white tracking-tight">Buat Pengajuan Surat</h1>
-        <p className="text-zinc-400 mt-2 text-lg font-medium">Lengkapi formulir dan unggah persyaratan yang diperlukan.</p>
+      <header className="relative py-8 flex items-center space-x-6">
+        <button 
+          onClick={() => navigate(-1)}
+          className="p-3 bg-white/5 rounded-2xl text-zinc-400 hover:text-white hover:bg-white/10 transition-all border border-white/5 z-10"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        <div className="relative">
+          <div className="absolute -left-4 top-0 w-1 h-full bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+          <h1 className="text-4xl font-bold text-white tracking-tight">Buat Pengajuan Surat</h1>
+          <p className="text-zinc-400 mt-2 text-lg font-medium">Lengkapi formulir dan unggah persyaratan yang diperlukan.</p>
+        </div>
       </header>
 
       {success ? (
@@ -249,17 +274,19 @@ export default function CreateRequest() {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-3 ml-1">Tempat Tanggal Lahir</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.birth_info}
-                      onChange={(e) => setFormData({ ...formData, birth_info: e.target.value })}
-                      className="glass-input w-full px-6 py-4"
-                      placeholder="Contoh: Batang, 01-01-1990"
-                    />
-                  </div>
+                  {type !== 'Lapor/Aduan' && (
+                    <div>
+                      <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-3 ml-1">Tempat Tanggal Lahir</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.birth_info}
+                        onChange={(e) => setFormData({ ...formData, birth_info: e.target.value })}
+                        className="glass-input w-full px-6 py-4"
+                        placeholder="Contoh: Batang, 01-01-1990"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-start space-x-4 p-6 bg-blue-500/5 rounded-2xl border border-blue-500/20">
