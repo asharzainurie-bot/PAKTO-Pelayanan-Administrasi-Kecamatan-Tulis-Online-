@@ -1,6 +1,6 @@
 {
-  "name": "PAKTO - Pelayanan Administrasi Kecamatan Tulis Online",
-  "short_name": "PAKTO",
+  "name": "PAK TO - Pelayanan Administrasi Kecamatan Tulis Online",
+  "short_name": "PAK TO",
   "description": "Pelayanan Administrasi Kecamatan Tulis Online",
   "start_url": "/",
   "display": "standalone",

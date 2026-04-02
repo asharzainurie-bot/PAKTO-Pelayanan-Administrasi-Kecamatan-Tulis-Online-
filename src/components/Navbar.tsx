@@ -21,7 +21,7 @@ export default function Navbar({ profile, isAdmin }: { profile: any, isAdmin: bo
               <span className="text-2xl font-black text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)] relative z-10">P</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-black text-2xl tracking-tighter text-white leading-none">PAKTO</span>
+              <span className="font-black text-2xl tracking-tighter text-white leading-none">PAK TO</span>
               <span className="text-[10px] text-emerald-500 font-bold tracking-[0.2em] uppercase mt-1">Kecamatan Tulis</span>
             </div>
           </Link>

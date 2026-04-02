@@ -66,7 +66,7 @@ export default function InstallPWA() {
                 <Smartphone size={28} className="text-white" />
               </div>
               <div className="flex-1 pr-6">
-                <h3 className="text-lg font-bold text-white tracking-tight">Pasang Aplikasi PAKTO</h3>
+                <h3 className="text-lg font-bold text-white tracking-tight">Pasang Aplikasi PAK TO</h3>
                 <p className="text-zinc-400 text-sm mt-1 font-medium">Instal di layar utama untuk akses lebih cepat dan mudah.</p>
               </div>
             </div>

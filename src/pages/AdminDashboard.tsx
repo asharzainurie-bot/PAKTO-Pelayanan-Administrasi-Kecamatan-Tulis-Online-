@@ -76,7 +76,7 @@ export default function AdminDashboard() {
     const namaKtp = req.full_name_ktp || req.profiles?.full_name || 'Pemohon';
     const nomerPengajuan = req.id.slice(0, 8);
     
-    let message = `Selamat Datang di Portal PAKTO ( Pelayanan Administrasi Kecamatan Tulis Online ), Pengajuan ${req.type} anda, dengan nomer pengajuan ${nomerPengajuan} atas nama ${namaKtp} Berstatus ${statusText}. Terimakasih.`;
+    let message = `Selamat Datang di Portal PAK TO ( Pelayanan Administrasi Kecamatan Tulis Online ), Pengajuan ${req.type} anda, dengan nomer pengajuan ${nomerPengajuan} atas nama ${namaKtp} Berstatus ${statusText}. Terimakasih.`;
 
     if (newStatus === 'rejected' && notes) {
       message += ` Alasan: ${notes}`;

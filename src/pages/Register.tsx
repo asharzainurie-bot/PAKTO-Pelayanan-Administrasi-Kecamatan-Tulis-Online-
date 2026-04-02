@@ -85,13 +85,13 @@ export default function Register() {
           <div className="w-32 h-32 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(16,185,129,0.2)] border-2 border-emerald-500/20 relative overflow-hidden group hover:scale-105 transition-transform duration-500">
             <img 
               src="https://i.imgur.com/6buHyBO.png" 
-              alt="PAKTO Logo" 
+              alt="PAK TO Logo" 
               className="w-full h-full object-contain relative z-10"
               referrerPolicy="no-referrer"
             />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">Daftar Akun</h1>
-          <p className="text-zinc-500 mt-3 font-medium">Lengkapi data diri untuk pendaftaran PAKTO</p>
+          <p className="text-zinc-500 mt-3 font-medium">Lengkapi data diri untuk pendaftaran PAK TO</p>
         </div>
 
         {error && (
